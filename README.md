@@ -4,7 +4,7 @@ Connectopia is a social media platform built with Django, providing users with a
 ## Features
 - User Registration and Authentication
 - View and Add posts
-- View and update profile:
+- View and update profile
 - Follow/following functionality
 - Commenting on a post
 
