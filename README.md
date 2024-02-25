@@ -7,7 +7,7 @@ Connectopia is a social media platform built with Django, providing users with a
 - View and update profile:
 - Follow/following functionality
 - Commenting on a post
-- 
+
 ## Execution
 To run Connectopia locally, follow these steps:
 - pip install -r requirements.txt
