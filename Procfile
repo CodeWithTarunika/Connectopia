@@ -1,0 +1,1 @@
+web gunicorn SOCIAL_MEDIA_APP_BOB.wsgi:application --log-file -

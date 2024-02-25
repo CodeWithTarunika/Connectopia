@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="text-center">
+            <h3 class="text-primary">{{ user.username|title }}</h3>
+            <p class="text-muted">{{ user.profile.bio }}</p>
+            <p class="text-muted">{{ user.profile.age }} <small>years old</small></p>
+            {% if request.user.id == user.id %}
+                <!-- Anyone who wants to see this section must be the owner of this profile -->
+                <a href="{% url 'post:add_post' user.id %}" class='btn btn-info'>Add Post</a>
+                <a href="{% url 'account:edit_profile' user.id %}" class='btn btn-secondary'>Edit Profile</a><br><br>
+            {% endif %}
+            {% if request.user.is_authenticated and rel %}
+                <button data-id="{{ user.id }}" id='btn_followiing' class='btn btn-danger'>Unfollow</button>
+            {% elif request.user.is_authenticated and request.user.id != user.id %}
+                <button data-id="{{ user.id }}" id='btn_followiing' class='btn btn-primary'>Follow</button>
+            {% endif %}
+        </div>
+        <hr>
+        <h6 class="text-primary">User Posts</h6>
+        <div class="row">
+            {% for post in posts %}
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <a href="{{ post.get_absolute_url }}" class="text-dark">
+                                <h5 class="card-title">{{ post.body|slice:":30" }}...</h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block myJs %}
+    <script src="{% static 'account/js/main.js' %}"></script>
+{% endblock %}
